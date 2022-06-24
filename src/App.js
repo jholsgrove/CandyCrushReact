@@ -187,7 +187,12 @@ const dragEnd = (e) => {
           />
         ))}
       </div>
-      <ScoreBoard score = {scoreDisplay}/>
+      <div className="spacer"></div>
+      <div className="scoreBoard">
+      <h1>Score:</h1>
+      <p className="score"><ScoreBoard score = {scoreDisplay}/></p>
+      </div>
+      
     </div>
   )
 }
