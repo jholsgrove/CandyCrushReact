@@ -18,7 +18,6 @@ const candyColours = [
   purpleCandy
 ]
 
-
 const App = () => {
   const [currentColourArrangement, setCurrentColourArrangement] = useState([])
   const [squareBeingDragged, setSquareBeingDragged] = useState(null)
@@ -87,21 +86,21 @@ const App = () => {
     }
   }
   
-const moveIntoSquareBelow = () => {
-  for (let i = 0; i <= 55 - width; i++) {
-    const firstRow = [0,1,2,3,4,5,6,7]
-    const isFirstRow = firstRow.includes(i)
+  const moveIntoSquareBelow = () => {
+    for (let i = 0; i <= 55; i++) {
+        const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
+        const isFirstRow = firstRow.includes(i)
 
-    if(isFirstRow && currentColourArrangement[i] === blank){
-      let randomColour = Math.floor(Math.random() * candyColours.length)
-      currentColourArrangement[i] = candyColours[randomColour]
-    }
+        if (isFirstRow && currentColourArrangement[i] === blank) {
+            let randomNumber = Math.floor(Math.random() * candyColours.length)
+            currentColourArrangement[i] = candyColours[randomNumber]
+        }
 
-    if(currentColourArrangement[i + width] === blank) {
-      currentColourArrangement[i + width] = currentColourArrangement[i]
-      currentColourArrangement[i] = blank
+        if ((currentColourArrangement[i + width]) === blank) {
+            currentColourArrangement[i + width] = currentColourArrangement[i]
+            currentColourArrangement[i] = blank
+        }
     }
-  } 
 }
 
 const dragStart = (e) => {
@@ -190,7 +189,7 @@ const dragEnd = (e) => {
       </div>
       <ScoreBoard score = {scoreDisplay}/>
     </div>
-  );
+  )
 }
 
 export default App;
