@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import ScoreBoard from "./components/ScoreBoard"
 import blueCandy from './images/blue-candy.png'
 import greenCandy from './images/green-candy.png'
@@ -24,7 +24,7 @@ const App = () => {
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null)
   const [scoreDisplay, setScoreDisplay] = useState(0)
   
-  const checkForColOfFour = () => {
+  const checkForColOfFour = useCallback(() => {
     for (let i = 0; i <= 39; i++) {
         const columnOfFour = [i, i + width, i  + width * 2, i + width * 3]
         const decidedColour = currentColourArrangement[i]
@@ -36,9 +36,9 @@ const App = () => {
           return true
         }
     }
-  }
+  }, [currentColourArrangement])
 
-  const checkForRowOfFour = () => {
+  const checkForRowOfFour = useCallback(() => {
     for (let i = 0; i < 64; i++) {
         const rowOfFour = [i, i+ 1, i+2, i+3]
         const decidedColour = currentColourArrangement[i]
@@ -53,9 +53,9 @@ const App = () => {
           return true
         }
     }
-  }
+  }, [currentColourArrangement])
 
-  const checkForColOfThree = () => {
+const checkForColOfThree = useCallback(() => {
     for (let i = 0; i <= 47; i++) {
         const columnOfThree = [i, i+ width, i+width*2]
         const decidedColour = currentColourArrangement[i]
@@ -67,9 +67,9 @@ const App = () => {
           return true
         }
     }
-  }
+  }, [currentColourArrangement])
 
-  const checkForRowOfThree = () => {
+  const checkForRowOfThree = useCallback(() => {
     for (let i = 0; i < 64; i++) {
         const rowOfThree = [i, i+ 1, i+2]
         const decidedColour = currentColourArrangement[i]
@@ -84,9 +84,9 @@ const App = () => {
           return true
         }
     }
-  }
+  }, [currentColourArrangement])
   
-  const moveIntoSquareBelow = () => {
+  const moveIntoSquareBelow = useCallback(() => {
     for (let i = 0; i <= 55; i++) {
         const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
         const isFirstRow = firstRow.includes(i)
@@ -101,7 +101,7 @@ const App = () => {
             currentColourArrangement[i] = blank
         }
     }
-}
+}, [currentColourArrangement])
 
 const dragStart = (e) => {
   setSquareBeingDragged(e.target)
